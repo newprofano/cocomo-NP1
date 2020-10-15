@@ -4,15 +4,15 @@ import { toast, ToastContainer } from 'react-toastify'
 import { Button, Grid } from '@material-ui/core';
 import './App.css';
 
-let ab: number;
-let bb: number;
-let ai: number;
-let bi: number;
-let ci: number;
-let di: number;
-let cb: number;
-let db: number;
-let erros: number;
+let ab: number
+let bb: number
+let ai: number
+let bi: number
+let ci: number
+let di: number
+let cb: number
+let db: number
+let erros: number
 
 
 function App() {
@@ -26,8 +26,8 @@ function App() {
     BASICO: "basico",
     INTERMEDIARIO: "intermediario",
   }
-  const [modoOption, setModoOption] = useState(modo.ORGANICO);
-  const [modeloOption, setModeloOption] = useState(modelo.BASICO);
+  const [modoOption, setModoOption] = useState(modo.ORGANICO)
+  const [modeloOption, setModeloOption] = useState(modelo.BASICO)
   const [kloc, setKloc] = useState("")
   const [rely, setRely] = useState("")
   const [data, setData] = useState("")
@@ -44,7 +44,7 @@ function App() {
   const [modp, setModp] = useState("")
   const [tool, setTool] = useState("")
   const [sced, setSced] = useState("")
-  const [E, setE] = useState(0);
+  const [E, setE] = useState(0)
   const [D, setD] = useState(0)
   const [P, setP] = useState(0)
 
@@ -53,22 +53,22 @@ function App() {
     Object.entries(obj).map(item => {
       if (item[1] === "") {
         toast.error(`Você esqueceu de selecionar o campo ${item[0]}`)
-        erros++;
+        erros++
       }
       return false
     })
     if (erros > 0) return 0
-    let produto = 1;
+    let produto = 1
     Object.values(obj).map(item => produto *= parseFloat(item))
     console.log(produto)
-    return produto;
+    return produto
   }
 
   function setModoAndModel(modoOption: string, modeloOption: string) {
     if (modeloOption === modelo.BASICO) {
       if (modoOption === modo.ORGANICO) {
-        ab = 2.4;
-        bb = 1.05;
+        ab = 2.4
+        bb = 1.05
         cb = 2.5
         db = 0.38
       }
@@ -131,24 +131,23 @@ function App() {
     })
 
     if (erros > 0) return
-    setE(ai * (parseFloat(kloc)) ** bi * produto);
+    setE(ai * (parseFloat(kloc)) ** bi * produto)
   }
   function execCalc() {
     setModoAndModel(modoOption, modeloOption);
     if (kloc === null || kloc === "") return toast.error("Por favor coloque a quantidade de linhas (milhares)")
 
-    if (modeloOption === modelo.BASICO) return calcBasic();
-    if (modeloOption === modelo.INTERMEDIARIO) return calcInter();
+    if (modeloOption === modelo.BASICO) return calcBasic()
+    if (modeloOption === modelo.INTERMEDIARIO) return calcInter()
   }
 
   useEffect(() => {
-    if (modeloOption === modelo.BASICO) return setD(cb * E ** db);
-    if (modeloOption === modelo.INTERMEDIARIO) return setD(ci * E ** di);
+    if (modeloOption === modelo.BASICO) return setD(cb * E ** db)
+    if (modeloOption === modelo.INTERMEDIARIO) return setD(ci * E ** di)
 
   }, [E, modeloOption, modelo.BASICO, modelo.INTERMEDIARIO])
   useEffect(() => {
     setP(E / D)
-      ;
   }, [D, E])
 
   return (
