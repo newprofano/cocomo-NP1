@@ -1,0 +1,27 @@
+body{
+  background-color: rgba(0, 0, 0, 0.795);
+}
+
+#optionsContainer, #rightContainer{
+  padding: 10px;
+  color: white;
+  height: auto;
+  font-size: 20px;
+}
+
+#rightContainer  p span {
+  font-weight: 600;
+  
+}
+
+#buttonCalc{
+  margin-top: 10px;
+}
+
+td{
+  text-align: center;
+}
+
+table .tTitle{
+  font-weight: bold;
+}
